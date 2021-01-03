@@ -1,0 +1,11 @@
+name: mnist
+channels:
+  - defaults
+dependencies:
+  - mypy
+  - numpy
+  - pytest
+  - ipython
+  - pip:
+    - requests
+prefix: /Users/benjamin/opt/anaconda3/envs/mnist
