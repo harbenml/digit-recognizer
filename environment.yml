@@ -2,10 +2,13 @@ name: mnist
 channels:
   - defaults
 dependencies:
+  - ipython
   - mypy
   - numpy
   - pytest
-  - ipython
+  - pytorch
+  - torchaudio
+  - torchvision
   - pip:
     - requests
 prefix: /Users/benjamin/opt/anaconda3/envs/mnist
