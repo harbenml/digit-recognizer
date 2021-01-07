@@ -8,7 +8,6 @@ import pickle
 import requests
 
 from torch.utils.data import TensorDataset
-from torch.utils.data import DataLoader
 
 
 def get_data() -> Tuple[TensorDataset, TensorDataset]:
@@ -30,13 +29,4 @@ def get_data() -> Tuple[TensorDataset, TensorDataset]:
     valid_ds = TensorDataset(x_valid, y_valid)
 
     return train_ds, valid_ds
-
-
-def get_dataloaders(
-    train_ds: TensorDataset, valid_ds: TensorDataset, bs: int
-) -> Tuple[DataLoader, DataLoader]:
-    return (
-        DataLoader(train_ds, batch_size=bs, shuffle=True),
-        DataLoader(valid_ds, batch_size=bs * 2),
-    )
 
