@@ -131,3 +131,6 @@ dmypy.json
 # data files
 *.gz
 *.pkl
+
+# VS Code files
+.vscode
