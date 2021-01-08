@@ -1,12 +1,13 @@
 from typing import IO, Tuple, cast
 
-from src.config import DATA_PATH, URL, FILENAME
+from config import DATA_PATH, URL, FILENAME
 
 import gzip
 import numpy as np  # type: ignore
 import pickle
 import requests
 
+import torch
 from torch.utils.data import TensorDataset
 
 
@@ -25,6 +26,9 @@ def get_data() -> Tuple[TensorDataset, TensorDataset]:
             cast(IO[bytes], unzipped_file), encoding="latin-1"
         )
 
+    x_train, y_train, x_valid, y_valid = map(
+        torch.tensor, (x_train, y_train, x_valid, y_valid)
+    )
     train_ds = TensorDataset(x_train, y_train)
     valid_ds = TensorDataset(x_valid, y_valid)
 
