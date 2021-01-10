@@ -4,8 +4,8 @@ from torch import nn
 from torch import optim
 from torch import Tensor
 
-from torch.utils.data import DataLoader
-import torch.nn.functional as F
+# from torch.utils.data import DataLoader
+# import torch.nn.functional as F
 
 from model import Mnist_CNN
 

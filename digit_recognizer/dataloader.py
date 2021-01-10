@@ -1,5 +1,7 @@
+from typing import Callable
 from typing import Tuple
 
+from torch import Tensor
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
 
@@ -13,16 +15,16 @@ def get_dataloaders(
     )
 
 
-def preprocess(x, y):
+def preprocess(x: Tensor, y: Tensor) -> Tuple[Tensor, Tensor]:
     return x.view(-1, 1, 28, 28), y
 
 
 class WrappedDataLoader:
-    def __init__(self, dl, func):
+    def __init__(self, dl: DataLoader, func: Callable):
         self.dl = dl
         self.func = func
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.dl)
 
     def __iter__(self):
