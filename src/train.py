@@ -51,7 +51,7 @@ if __name__ == "__main__":
     loss_func = F.cross_entropy
 
     train_ds, valid_ds = get_data()
-    train_dl, valid_dl = get_dataloaders(train_ds, valid_ds, bs=bs)
+    train_dl, valid_dl = get_dataloaders(train_ds, valid_ds, bs=valid_ds)
 
     print("Start training")
     # model = fit(
