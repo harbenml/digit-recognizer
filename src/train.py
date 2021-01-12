@@ -1,11 +1,10 @@
 from typing import Any
 from typing import Callable
 
-from data_io import get_data
-from dataloader import get_dataloaders
-from loss import loss_batch
-from model import Mnist_CNN
-
+from src.data_io import get_data
+from src.dataloader import get_dataloaders
+from src.loss import loss_batch
+from src.model import Mnist_CNN
 
 import numpy as np  # type: ignore
 
@@ -51,14 +50,14 @@ if __name__ == "__main__":
     loss_func = F.cross_entropy
 
     train_ds, valid_ds = get_data()
-    train_dl, valid_dl = get_dataloaders(train_ds, valid_ds, bs=valid_ds)
+    train_dl, valid_dl = get_dataloaders(train_ds, valid_ds, bs=bs)
 
     print("Start training")
-    # model = fit(
-    #     epochs=epochs,
-    #     model=model,
-    #     loss_func=loss_func,
-    #     opt=opt,
-    #     train_dl=train_dl,
-    #     valid_dl=valid_dl,
-    # )
+    model = fit(
+        epochs=epochs,
+        model=model,
+        loss_func=loss_func,
+        opt=opt,
+        train_dl=train_dl,
+        valid_dl=valid_dl,
+    )
