@@ -1,4 +1,4 @@
-from src.data_io import get_data
+from data_io import get_data
 from torch.utils.data import TensorDataset
 
 import numpy as np

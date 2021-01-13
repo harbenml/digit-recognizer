@@ -1,10 +1,10 @@
 from typing import Any
 from typing import Callable
 
-from src.data_io import get_data
-from src.dataloader import get_dataloaders
-from src.loss import loss_batch
-from src.model import Mnist_CNN
+from data_io import get_data
+from dataloader import get_dataloaders
+from loss import loss_batch
+from model import Mnist_CNN
 
 import numpy as np  # type: ignore
 

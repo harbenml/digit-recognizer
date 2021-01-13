@@ -2,9 +2,9 @@ from typing import cast
 from typing import IO
 from typing import Tuple
 
-from src.config import DATA_PATH
-from src.config import FILENAME
-from src.config import URL
+from config import DATA_PATH
+from config import FILENAME
+from config import URL
 
 import gzip
 import numpy as np  # type: ignore

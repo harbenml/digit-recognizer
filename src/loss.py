@@ -7,7 +7,7 @@ from torch import Tensor
 # from torch.utils.data import DataLoader
 # import torch.nn.functional as F
 
-from src.model import Mnist_CNN
+from model import Mnist_CNN
 
 
 def loss_batch(
