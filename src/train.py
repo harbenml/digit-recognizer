@@ -1,7 +1,5 @@
 from data_io import get_data
 from dataloader import get_dataloaders
-from dataloader import preprocess
-from dataloader import WrappedDataLoader
 from loss import loss_batch
 from model import Mnist_CNN
 from typing import Any
@@ -21,10 +19,12 @@ def fit(
     opt: Any,
     train_dl: DataLoader,
     valid_dl: DataLoader,
+    device: torch.device,
 ) -> Mnist_CNN:
     for epoch in range(epochs):
         model.train()
         for xb, yb in train_dl:
+            xb, yb = xb.to(device), yb.to(device)
             loss_batch(xb, yb, model, loss_func, opt)
 
         model.eval()
@@ -46,19 +46,21 @@ if __name__ == "__main__":
     if torch.cuda.is_available():
         print("Training uses GPU")
         device = torch.device("cuda")
-        model.to(device)
+    else:
+        device = torch.device("cpu")
+
+    model.to(device)
 
     bs = 32
     lr = 0.1
     momentum = 0.9
-    epochs = 10
+    epochs = 2
 
     opt = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     loss_func = F.cross_entropy
 
     train_ds, valid_ds = get_data()
-    train_dl = WrappedDataLoader(train_ds, preprocess)
-    valid_dl = WrappedDataLoader(valid_ds, preprocess)
+    train_dl, valid_dl = get_dataloaders(train_ds, valid_ds, bs=bs)
 
     print("Start training")
     model = fit(
@@ -68,4 +70,5 @@ if __name__ == "__main__":
         opt=opt,
         train_dl=train_dl,
         valid_dl=valid_dl,
+        device=device,
     )
