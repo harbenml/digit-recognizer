@@ -2,9 +2,10 @@ from typing import Callable
 from typing import Generator
 from typing import Tuple
 
+import torch
 from torch import Tensor
-from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
+from torch.utils.data import TensorDataset
 
 
 def get_dataloaders(
@@ -17,7 +18,8 @@ def get_dataloaders(
 
 
 def preprocess(x: Tensor, y: Tensor) -> Tuple[Tensor, Tensor]:
-    return x.view(-1, 1, 28, 28), y
+    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    return x.view(-1, 1, 28, 28).to(device), y.to(device)
 
 
 class WrappedDataLoader:
