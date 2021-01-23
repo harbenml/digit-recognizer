@@ -1,13 +1,11 @@
-from typing import Any, Callable, Tuple
+from model import Mnist_CNN
+from typing import Any
+from typing import Callable
+from typing import Tuple
 
 from torch import nn
 from torch import optim
 from torch import Tensor
-
-# from torch.utils.data import DataLoader
-# import torch.nn.functional as F
-
-from model import Mnist_CNN
 
 
 def loss_batch(
@@ -21,4 +19,3 @@ def loss_batch(
         opt.zero_grad()
 
     return loss.item(), len(xb)
-
