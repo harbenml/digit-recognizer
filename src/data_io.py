@@ -1,16 +1,14 @@
+import gzip
+import pickle
+from config import DATA_PATH
+from config import FILENAME
+from config import URL
 from typing import cast
 from typing import IO
 from typing import Tuple
 
-from config import DATA_PATH
-from config import FILENAME
-from config import URL
-
-import gzip
 import numpy as np  # type: ignore
-import pickle
 import requests
-
 import torch
 from torch.utils.data import TensorDataset
 
@@ -37,4 +35,3 @@ def get_data() -> Tuple[TensorDataset, TensorDataset]:
     valid_ds = TensorDataset(x_valid, y_valid)
 
     return train_ds, valid_ds
-
