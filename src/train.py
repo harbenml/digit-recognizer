@@ -30,7 +30,10 @@ def fit(
         model.eval()
         with torch.no_grad():
             losses, nums = zip(
-                *[loss_batch(xb, yb, model, loss_func) for xb, yb in valid_dl]
+                *[
+                    loss_batch(xb.to(device), yb.to(device), model, loss_func)
+                    for xb, yb in valid_dl
+                ]
             )
         val_loss = np.sum(np.multiply(losses, nums)) / np.sum(nums)
 
