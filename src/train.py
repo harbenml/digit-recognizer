@@ -57,7 +57,7 @@ if __name__ == "__main__":
     bs = 32
     lr = 0.1
     momentum = 0.9
-    epochs = 2
+    epochs = 30
 
     opt = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     loss_func = F.cross_entropy
